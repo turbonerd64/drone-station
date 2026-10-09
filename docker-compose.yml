@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: drone-app
+    restart: always
+    volumes:
+      - /mnt/540data/drone/site:/usr/share/nginx/html:ro
+    networks:
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drone-http.entryPoints=http"
+      - "traefik.http.routers.drone-http.rule=Host(`drone.arman.love`)"
+      - "traefik.http.routers.drone-http.middlewares=drone-redirect"
+      - "traefik.http.middlewares.drone-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.drone-https.entryPoints=https"
+      - "traefik.http.routers.drone-https.rule=Host(`drone.arman.love`)"
+      - "traefik.http.routers.drone-https.tls=true"
+      - "traefik.http.routers.drone-https.tls.certresolver=letsencrypt"
+      - "traefik.http.services.drone-https.loadbalancer.server.port=80"
+
+networks:
+  coolify:
+    external: true

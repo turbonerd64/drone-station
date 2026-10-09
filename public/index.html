@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Station - Novation Launchkey Ambient Drone Machine</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Header & Status Bar -->
+    <header class="top-header">
+        <div class="logo-area">
+            <div class="logo-icon">????</div>
+            <div class="logo-text">
+                <h1>DRONE STATION</h1>
+                <span>Ambient Backing & Infinite Sustain Engine</span>
+            </div>
+        </div>
+
+        <div class="midi-status-badge">
+            <span id="midi-status-indicator" class="status-dot offline"></span>
+            <span id="midi-device-name">Scanning for Novation Launchkey Mini...</span>
+        </div>
+
+        <button id="btn-panic" class="btn-panic" title="Silence all audio immediately">??? PANIC / KILL</button>
+    </header>
+
+    <!-- Hero Section: Musical Intel & Visualizer -->
+    <main>
+        <!-- Quick Drone Selector: 12 Pitches + Chord Modifier Engine -->
+        <section class="quick-trigger-section">
+            <div class="qt-header-row">
+                <div class="qt-title-group">
+                    <span class="qt-badge">??? QUICK DRONE SELECTOR</span>
+                    <span class="qt-subtitle">1-Click Drone Launcher &bull; No MIDI keyboard required</span>
+                </div>
+                <div class="qt-actions-group">
+                    <div class="octave-control">
+                        <span class="oct-label">OCTAVE:</span>
+                        <div class="oct-btn-group" id="octave-selector">
+                            <button class="oct-btn" data-oct="2">C2 (Bass)</button>
+                            <button class="oct-btn active" data-oct="3">C3 (Mid)</button>
+                            <button class="oct-btn" data-oct="4">C4 (High)</button>
+                        </div>
+                    </div>
+                    <button id="btn-quick-stop" class="btn-quick-stop" title="Stop sounding drone">??? STOP DRONE</button>
+                </div>
+            </div>
+
+            <!-- 12 Chromatic Pitch Buttons -->
+            <div class="pitch-selector-grid" id="pitch-buttons-grid">
+                <button class="pitch-btn" data-pc="0"><span class="p-note">C</span></button>
+                <button class="pitch-btn accidental" data-pc="1"><span class="p-note">C#</span><span class="p-enh">D???</span></button>
+                <button class="pitch-btn" data-pc="2"><span class="p-note">D</span></button>
+                <button class="pitch-btn accidental" data-pc="3"><span class="p-note">D#</span><span class="p-enh">E???</span></button>
+                <button class="pitch-btn" data-pc="4"><span class="p-note">E</span></button>
+                <button class="pitch-btn active" data-pc="5"><span class="p-note">F</span></button>
+                <button class="pitch-btn accidental" data-pc="6"><span class="p-note">F#</span><span class="p-enh">G???</span></button>
+                <button class="pitch-btn" data-pc="7"><span class="p-note">G</span></button>
+                <button class="pitch-btn accidental" data-pc="8"><span class="p-note">G#</span><span class="p-enh">A???</span></button>
+                <button class="pitch-btn" data-pc="9"><span class="p-note">A</span></button>
+                <button class="pitch-btn accidental" data-pc="10"><span class="p-note">A#</span><span class="p-enh">B???</span></button>
+                <button class="pitch-btn" data-pc="11"><span class="p-note">B</span></button>
+            </div>
+
+            <!-- Chord & Voicing Modifiers -->
+            <div class="modifiers-panel">
+                <div class="mod-row">
+                    <span class="mod-category-label">ROOT & TRIADS:</span>
+                    <div class="mod-button-group" id="modifiers-triads">
+                        <button class="mod-btn" data-intervals="0">Single Note</button>
+                        <button class="mod-btn" data-intervals="0,7">Power (5)</button>
+                        <button class="mod-btn active" data-intervals="0,4,7">Major Triad</button>
+                        <button class="mod-btn" data-intervals="0,3,7">Minor Triad</button>
+                        <button class="mod-btn" data-intervals="0,5,7">Sus4</button>
+                        <button class="mod-btn" data-intervals="0,2,7">Sus2</button>
+                        <button class="mod-btn" data-intervals="0,3,6">Diminished</button>
+                        <button class="mod-btn" data-intervals="0,4,8">Augmented</button>
+                    </div>
+                </div>
+
+                <div class="mod-row">
+                    <span class="mod-category-label">7TH CHORDS:</span>
+                    <div class="mod-button-group" id="modifiers-sevenths">
+                        <button class="mod-btn" data-intervals="0,4,7,11">Maj7</button>
+                        <button class="mod-btn" data-intervals="0,3,7,10">Min7</button>
+                        <button class="mod-btn" data-intervals="0,4,7,10">Dominant 7</button>
+                        <button class="mod-btn" data-intervals="0,3,6,10">m7???5 (Half-Dim)</button>
+                        <button class="mod-btn" data-intervals="0,3,6,9">Dim7</button>
+                        <button class="mod-btn" data-intervals="0,3,7,11">m(Maj7)</button>
+                        <button class="mod-btn" data-intervals="0,4,8,10">Aug7</button>
+                    </div>
+                </div>
+
+                <div class="mod-row">
+                    <span class="mod-category-label">EXTENDED / COLOR:</span>
+                    <div class="mod-button-group" id="modifiers-extended">
+                        <button class="mod-btn" data-intervals="0,4,7,14">Add9</button>
+                        <button class="mod-btn" data-intervals="0,4,7,11,14">Maj9</button>
+                        <button class="mod-btn" data-intervals="0,3,7,10,14">Min9</button>
+                        <button class="mod-btn" data-intervals="0,4,7,10,14">Dominant 9</button>
+                        <button class="mod-btn" data-intervals="0,4,7,9">Major 6</button>
+                        <button class="mod-btn" data-intervals="0,3,7,9">Minor 6</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero-grid">
+            <!-- Chord & Scale Intel Card -->
+            <div class="hero-card">
+                <div class="card-title-bar">
+                    <span class="card-title">Live Harmony & Drone Root</span>
+                    <span id="latch-mode-badge" style="font-size: 11px; color: var(--accent-cyan); font-weight: 600;">LATCH: ACTIVE</span>
+                </div>
+                
+                <div id="chord-display-title" class="chord-big-title">Ready</div>
+                <div id="chord-display-desc" class="chord-desc">Strike any note or chord on your Launchkey Mini</div>
+
+                <div class="scales-section">
+                    <div class="scales-label">Suggested Practice Scales</div>
+                    <ul id="scales-list" class="scales-list">
+                        <li class="scale-badge">Awaiting notes to calculate scales...</li>
+                    </ul>
+                </div>
+
+                <div class="active-pitches-wrap" id="active-pitches-list">
+                    <!-- Dynamic pitch tags rendered here -->
+                </div>
+            </div>
+
+            <!-- Audio Spectrum & Waveform Scope -->
+            <div class="hero-card">
+                <div class="card-title-bar">
+                    <span class="card-title">Harmonic Spectrum & Waveform</span>
+                    <span style="font-size: 11px; color: var(--text-dim);">60 FPS Web Audio Analyser</span>
+                </div>
+                <div class="visualizer-container">
+                    <canvas id="canvas-spectrum"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preset & Instrument Toolbar -->
+        <section class="toolbar-section">
+            <div class="instrument-picker-row">
+                <label for="instrument-select" class="instrument-label">Sound Generator / Instrument:</label>
+                <select id="instrument-select" class="instrument-select">
+                    <!-- Populated dynamically with 128 GM instruments + synths -->
+                </select>
+                <div id="instrument-progress" class="instrument-progress-wrap">
+                    <div id="instrument-progress-fill" class="instrument-progress-fill"></div>
+                </div>
+                <span id="instrument-loading-text" style="font-size: 12px; color: var(--accent-cyan); min-width: 80px;"></span>
+            </div>
+
+            <div class="presets-container">
+                <span class="presets-label">Quick Presets:</span>
+                <div id="presets-list" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modular Control Rack -->
+        <section class="rack-grid">
+            <!-- Module 1: Crossfade Engine -->
+            <div class="module-box">
+                <div class="module-header">
+                    <span class="module-name">???? Crossfade Engine</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-crossfade" checked>
+                        <span class="slider-switch"></span>
+                    </label>
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Duration</span>
+                        <span id="val-crossfade" class="param-val">1.6s</span>
+                    </div>
+                    <input type="range" id="slider-crossfade" class="range-slider" min="0.1" max="5.0" step="0.1" value="1.6">
+                </div>
+                <p style="font-size: 11px; color: var(--text-dim); line-height: 1.4;">
+                    Smoothly blends between chord changes with zero audio clicks.
+                </p>
+            </div>
+
+            <!-- Module 2: Octave Spreader -->
+            <div class="module-box">
+                <div class="module-header">
+                    <span class="module-name">???? Octave Spreader</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-spread" checked>
+                        <span class="slider-switch"></span>
+                    </label>
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Sub-Bass (-1 Octave)</span>
+                    </div>
+                    <input type="range" id="slider-sub-level" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.7">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Upper Shimmer (+1 Octave)</span>
+                    </div>
+                    <input type="range" id="slider-shimmer-level" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.45">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>5th Drone Overtone</span>
+                    </div>
+                    <input type="range" id="slider-fifth-level" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.35">
+                </div>
+            </div>
+
+            <!-- Module 3: Sustain & Infinite Freeze -->
+            <div class="module-box">
+                <div class="module-header">
+                    <span class="module-name">?????? Sustain & Infinite Freeze</span>
+                </div>
+                <div class="radio-pill-group">
+                    <label class="radio-pill-label">
+                        <input type="radio" name="sustain-mode" id="mode-freeze" checked>
+                        Ambient Freeze
+                    </label>
+                    <label class="radio-pill-label">
+                        <input type="radio" name="sustain-mode" id="mode-natural">
+                        Raw / Natural
+                    </label>
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Freeze Feedback Blur</span>
+                    </div>
+                    <input type="range" id="slider-freeze-amount" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.75">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Space / Reverb Wet</span>
+                    </div>
+                    <input type="range" id="slider-reverb-mix" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.45">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Reverb Damping</span>
+                    </div>
+                    <input type="range" id="slider-reverb-damp" class="range-slider" min="1000" max="12000" step="200" value="4500">
+                </div>
+            </div>
+
+            <!-- Module 4: Modulation & Movement -->
+            <div class="module-box">
+                <div class="module-header">
+                    <span class="module-name">???? Modulation (LFO)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-modulation" checked>
+                        <span class="slider-switch"></span>
+                    </label>
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>LFO Rate (Breathing)</span>
+                    </div>
+                    <input type="range" id="slider-lfo-rate" class="range-slider" min="0.05" max="3.0" step="0.05" value="0.18">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Modulation Depth</span>
+                    </div>
+                    <input type="range" id="slider-lfo-depth" class="range-slider" min="0.0" max="1.0" step="0.05" value="0.4">
+                </div>
+                <p style="font-size: 11px; color: var(--text-dim); line-height: 1.4;">
+                    Subtly sweeps filter frequencies so the drone gently breathes without static ear fatigue.
+                </p>
+            </div>
+
+            <!-- Module 5: Master Filter & Volume -->
+            <div class="module-box">
+                <div class="module-header">
+                    <span class="module-name">??????? Master Tone & Vol</span>
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Filter Cutoff (Brightness)</span>
+                        <span id="val-cutoff" class="param-val">3200 Hz</span>
+                    </div>
+                    <input type="range" id="slider-cutoff" class="range-slider" min="0" max="100" value="65">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Resonance (Warmth)</span>
+                    </div>
+                    <input type="range" id="slider-resonance" class="range-slider" min="0.1" max="10.0" step="0.1" value="1.5">
+                </div>
+                <div class="param-group">
+                    <div class="param-label-row">
+                        <span>Master Volume</span>
+                    </div>
+                    <input type="range" id="slider-volume" class="range-slider" min="0.0" max="1.2" step="0.02" value="0.85">
+                </div>
+            </div>
+        </section>
+
+        <!-- Novation Launchkey Mini Hardware HUD -->
+        <section class="hardware-hud-section">
+            <div class="hud-title-bar">
+                <span class="hud-title">??????? Novation Launchkey Mini - Hardware Knobs (Rotary CC)</span>
+                <span style="font-size: 11px; color: var(--text-muted);">Click "Learn" on any knob to rebind to physical hardware</span>
+            </div>
+
+            <div id="launchkey-knobs-grid" class="knobs-grid">
+                <!-- 8 Rotary Knobs rendered dynamically -->
+            </div>
+
+            <div class="hud-title-bar" style="margin-top: 14px;">
+                <span class="hud-title">???? Launchkey Mini - 16 RGB Drum Pads (Instant Drone Roots & Actions)</span>
+                <span style="font-size: 11px; color: var(--text-muted);">Pads 1-12 = Roots C through B | Pad 15 = Freeze | Pad 16 = Clear</span>
+            </div>
+
+            <div id="launchkey-pads-grid" class="pads-grid">
+                <!-- 16 RGB Pads rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- 61-Key Interactive Virtual Piano Keyboard -->
+        <section class="piano-section">
+            <div class="card-title-bar" style="margin-bottom: 8px;">
+                <span class="card-title">???? 61-Key Voicing Map (C2 - C7)</span>
+                <div style="display: flex; gap: 14px; font-size: 11px;">
+                    <span style="color: var(--accent-amber); font-weight: 600;">??? Played / Core</span>
+                    <span style="color: var(--accent-cyan); font-weight: 600;">??? Sub-Bass (-1 Oct)</span>
+                    <span style="color: var(--accent-pink); font-weight: 600;">??? Shimmer (+1 Oct)</span>
+                    <span style="color: var(--accent-emerald); font-weight: 600;">??? 5th Overtone</span>
+                </div>
+            </div>
+            <div id="virtual-piano">
+                <!-- Interactive Piano Keys rendered dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Browser Audio Permission Dialog -->
+    <div id="start-overlay">
+        <div class="start-dialog">
+            <h2>???? Welcome to Drone Station</h2>
+            <p>
+                Connect your <strong>Novation Launchkey Mini</strong> via USB, or use the interactive onscreen keyboard.
+                Click below to initialize high-definition Web Audio & MIDI!
+            </p>
+            <button id="btn-start-audio" class="btn-start-hero">INITIALIZE AUDIO ENGINE</button>
+ 
